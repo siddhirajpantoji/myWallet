@@ -8,6 +8,8 @@ function login(userLoginReq, callback){
     console.log("In Login service ")
     userLoginReq.password= cryptoUtils.hashPassword(userLoginReq.password)
     //var compulsaryFields = ["username", "password"];
+    // DB call oevr here
+    // JWT Token  over here 
     callback( null, userLoginReq);
   
 }
