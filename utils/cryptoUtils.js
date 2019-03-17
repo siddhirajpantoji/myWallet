@@ -38,18 +38,17 @@ function verifyJWTToken(tokenToVerify){
     })
 }
 function encryptData(data){
-    console.log(data);
-    var mykey = crypto.createCipher('aes-128-cbc', 'sidd');
+  //  console.log(data);
+    var mykey = crypto.createCipher('aes-128-cbc', process.env.SECRET_KEY);
     var mystr = mykey.update(data, 'utf8', 'hex');
-    mystr += mykey.update.final('hex');
+    mystr += mykey.final('hex');
     return mystr;
  }
 
 function decryptData(data){
-    var mykey = crypto.createDecipher('aes-128-cbc', 'sidd');
+    var mykey = crypto.createDecipher('aes-128-cbc', process.env.SECRET_KEY);
     var mystr = mykey.update(data, 'hex', 'utf8');
-    mystr += mykey.update.final('utf8');
+    mystr += mykey.final('utf8');
     return mystr;
  }
 module.exports = {hashPassword , createJWTTokenForData , verifyJWTToken}
-console.log(encryptData("abc"))

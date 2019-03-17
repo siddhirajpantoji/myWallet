@@ -16,7 +16,7 @@ function login(userLoginReq){
     })
 }
 
-function createUser( userCreateReq, callback){
+function createUser( userCreateReq ){
     return new Promise((resolve,reject)=>{
         db.query(queries.USER.CREATE_USER_RECORD,[userCreateReq.username, userCreateReq.password , userCreateReq.token , userCreateReq.last_login , userCreateReq.first_name, userCreateReq.last_name],
         function(err,data){
@@ -25,6 +25,14 @@ function createUser( userCreateReq, callback){
     })
 }
 
+function updateTokenAndLogin( updateReq){
+    return new Promise((resolve,reject)=>{
+        db.query(queries.USER.UPDATE_TOKEN_LAST_LOGIN,[ updateReq.token, userCreateReq.last_login, userCreateReq.user_name],
+        function(err,data){
+            commonQueryFunction(err,data,resolve,reject)
+        })
+    })
+}
 function updatePassword( passwordUpdateReq){
     return new Promise((resolve,reject)=>{
         db.query(queries.USER.CREATE_USER_RECORD,[userCreateReq.username, userCreateReq.password , userCreateReq.token , userCreateReq.last_login , userCreateReq.first_name, userCreateReq.last_name],
