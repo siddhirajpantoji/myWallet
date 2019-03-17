@@ -1,7 +1,7 @@
 const db = require('./db');
 const queries = require('./daoQueries').QUERIES
 //console.log(process.env);
-function login(userLoginReq, callback){
+function login(userLoginReq){
     var username = userLoginReq.username;
     var password = userLoginReq.password;
     return new Promise((resolve,reject)=>{
@@ -17,11 +17,21 @@ function login(userLoginReq, callback){
 }
 
 function createUser( userCreateReq, callback){
-
+    return new Promise((resolve,reject)=>{
+        db.query(queries.USER.CREATE_USER_RECORD,[userCreateReq.username, userCreateReq.password , userCreateReq.token , userCreateReq.last_login , userCreateReq.first_name, userCreateReq.last_name],
+        function(err,data){
+            commonQueryFunction(err,data,resolve,reject)
+        })
+    })
 }
 
-function updatePassword( passwordUpdateReq, callback){
-
+function updatePassword( passwordUpdateReq){
+    return new Promise((resolve,reject)=>{
+        db.query(queries.USER.CREATE_USER_RECORD,[userCreateReq.username, userCreateReq.password , userCreateReq.token , userCreateReq.last_login , userCreateReq.first_name, userCreateReq.last_name],
+        function(err,data){
+            commonQueryFunction(err,data,resolve,reject)
+        })
+    })
 }
 
 function updateUser( userUpdateReq, callback){
