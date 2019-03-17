@@ -53,7 +53,7 @@ function updatePassword( passwordUpdate){
 function commonQueryFunction ( err, data, resolve, reject){
     if(err){
         return reject(err)
-    }
+    } 
     else{
         return resolve(data);
     }
