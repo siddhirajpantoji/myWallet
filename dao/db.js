@@ -13,7 +13,7 @@ console.log(process.env.DB_USER);
 module.exports = {
     query: function(text, values, cb) {
         pool.query(text,values, (err, res) => {
-            pool.end();
+           // pool.end();
             cb(err,res);
           })
     }

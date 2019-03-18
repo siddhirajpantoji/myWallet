@@ -9,11 +9,12 @@ const port = process.env.PORT;
 //global.process.env.DB_USER = process.env.DB_USER
 
 // //console.log(process.env);
-// userDao.createUserTable().then((data)=>{
-//     console.log(data)
-// }).catch((error)=>{
-//     console.error(error)
-// })
+userDao.createUserTable().then((data)=>{
+    console.log("table Creaeted ")
+    console.log(data)
+}).catch((error)=>{
+    console.error(error.stack)
+})
 app.listen(port,function(){
     console.log("Listenng on port "+  port)
 });
