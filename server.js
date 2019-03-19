@@ -8,7 +8,7 @@ const port = process.env.PORT;
 //console.log(process.env.DB_USER)
 //global.process.env.DB_USER = process.env.DB_USER
 
-// //console.log(process.env);
+
 userDao.createUserTable().then((data)=>{
     console.log("table Creaeted ")
     console.log(data)
