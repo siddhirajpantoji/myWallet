@@ -52,6 +52,29 @@ function validate(method ){
                   })
             ]
         }
+        case 'updateUser':{
+            return [
+                body('username').exists().withMessage(messages.USERNAME_COMPULSARY).isEmail().withMessage(messages.USERNAME_MUST_BE_EMAIL).
+                custom( value =>{
+                    return new Promise((resolve,reject)=>{
+                        userService.checkIfUserExists(value).then(user=>{
+                            console.log(user)
+                            if( user){
+                                reject(messages.USERNAME_IN_USE);
+                            }
+                            else{
+                                resolve()
+                            }
+                        }).catch(err=>{
+                            console.error(err);
+                            reject(err)
+                        })
+                    })
+                }),
+                body('first_name').exists().withMessage(messages.FIRST_NAME_REQ),
+                body('last_name').exists().withMessage(messages.LAST_NAME_REQ),
+            ]
+        }
     }
 }
 
